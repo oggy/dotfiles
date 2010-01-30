@@ -59,7 +59,7 @@ function rails_server {
     if which -s thin > /dev/null; then
         server=thin
     fi
-    rails_ruby script/server $server
+    rails_ruby script/server $server $*
 }
 
 #
