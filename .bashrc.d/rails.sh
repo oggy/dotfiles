@@ -160,6 +160,38 @@ function rrm {
         fi
     fi
 }
-alias rrmr='rails_rake db:migrate:redo'
-alias rrmd='rails_rake db:migrate:down'
-alias rrmu='rails_rake db:migrate:up'
+
+#
+# Run the db:migrate:redo task on given migration version.
+#
+# Defaults to the latest migration.
+#
+function rrmr {
+    rails_rake db:migrate:redo VERSION=`_rails_migration_version $1` $*
+}
+
+#
+# Run the db:migrate:down task on given migration version.
+#
+# Defaults to the latest migration.
+#
+function rrmd {
+    rails_rake db:migrate:down VERSION=`_rails_migration_version $1` $*
+}
+
+#
+# Run the db:migrate:up task on given migration version.
+#
+# Defaults to the latest migration.
+#
+function rrmu {
+    rails_rake db:migrate:up VERSION=`_rails_migration_version $1` $*
+}
+
+function _rails_migration_version {
+    if [ -n $1 ]; then
+        echo $1
+    else
+        ls -1 db/migrate | grep '\.rb$' | cut -d_ -f1 | sort -n | tail -1
+    fi
+}
