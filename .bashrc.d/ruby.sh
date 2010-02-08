@@ -36,3 +36,8 @@ function ruby-ps1 {
         echo -n "$PS1_RUBY_COLOR[@]$PS1_COLOR "
     fi
 }
+
+# RVM
+if [ -s /Users/g/.rvm/scripts/rvm ]; then
+  . /Users/g/.rvm/scripts/rvm
+fi
