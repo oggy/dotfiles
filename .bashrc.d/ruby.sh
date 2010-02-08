@@ -1,3 +1,5 @@
+export SNAILGUN_SHELL_OPTS="-l"
+
 alias gemls='gem list -rd --no-update-sources | less'
 alias gemup='gem sources -u'
 alias gemr='rake gem && gemu && gemi'
