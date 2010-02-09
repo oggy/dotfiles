@@ -1,3 +1,5 @@
+export SNAILGUN_SHELL_OPTS="-l"
+
 alias gemls='gem list -rd --no-update-sources | less'
 alias gemup='gem sources -u'
 alias gemr='rake gem && gemu && gemi'
@@ -34,3 +36,8 @@ function ruby-ps1 {
         echo -n "$PS1_RUBY_COLOR[@]$PS1_COLOR "
     fi
 }
+
+# RVM
+if [ -s /Users/g/.rvm/scripts/rvm ]; then
+  . /Users/g/.rvm/scripts/rvm
+fi
