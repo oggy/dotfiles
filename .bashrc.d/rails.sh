@@ -189,7 +189,7 @@ function rrmu {
 }
 
 function _rails_migration_version {
-    if [ -n $1 ]; then
+    if [ -n "$1" ]; then
         echo $1
     else
         ls -1 db/migrate | grep '\.rb$' | cut -d_ -f1 | sort -n | tail -1
