@@ -78,6 +78,7 @@ function rails_console {
 alias rrn='snailgun -v --rails development'
 alias rrx='rails_server'
 alias rrc='rails_console'
+alias rrdb='rails_ruby script/dbconsole'
 alias rrcs='rails_console --sandbox'
 alias rrr='rails_ruby script/runner'
 alias rrg='rails_ruby script/generate'
