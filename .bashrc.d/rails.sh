@@ -84,7 +84,7 @@ alias rrr='rails_ruby script/runner'
 alias rrg='rails_ruby script/generate'
 alias rrd='rails_ruby script/destroy'
 alias rrp='rails_ruby script/plugin'
-alias rrl='tail -f "log/`rails_env`.log'
+alias rrl='tail -f log/`rails_env`.log'
 
 #
 # Open the Rails API documentation.
