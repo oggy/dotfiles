@@ -1,3 +1,7 @@
+export RUBY_HEAP_MIN_SLOTS=600000
+export RUBY_GC_MALLOC_LIMIT=59000000
+export RUBY_HEAP_FREE_MIN=100000
+
 export SNAILGUN_SHELL_OPTS="-l"
 
 alias gemls='gem list -rd --no-update-sources | less'
