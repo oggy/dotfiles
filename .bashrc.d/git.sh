@@ -28,10 +28,24 @@ alias ggt='git remote'
 alias gguncommit='git reset --soft HEAD^'
 alias ggx='git commit'
 alias ggxa='git commit --amend'
-alias ggz='git stash save'
-alias ggzki='git stash save --keep-index'
 alias ggzl='git stash list'
 alias ggzp='git --no-pager stash pop'
+
+function ggz {
+    if [ $# -eq 0 ]; then
+        echo "Message please!" >&2
+        return 1
+    fi
+    git stash save $*
+}
+
+function ggzki {
+    if [ $# -eq 0 ]; then
+        echo "Message please!" >&2
+        return 1
+    fi
+    git stash save --keep-index $*
+}
 
 #
 # Output the contents of $2 in git branch $1
