@@ -37,8 +37,9 @@ function in_snailgun_shell {
 
 function ruby-ps1 {
     if in_snailgun_shell; then
-        echo -n "$PS1_RUBY_COLOR[@]$PS1_COLOR "
+        echo -n "[@] "
     fi
+    echo -n "[`rvm-prompt`] "
 }
 
 # RVM
