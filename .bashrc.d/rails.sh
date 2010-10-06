@@ -50,6 +50,20 @@ function rails_ruby {
 }
 
 #
+# Run a rails script.
+#
+# For example: server, console, generate, etc. This abstracts across
+# the Rails 2 and 3 commands.
+#
+function rails_script {
+    if [ -x script/rails ]; then
+        rails_ruby script/rails "$@"
+    else
+        rails_ruby script/"$@"
+    fi
+}
+
+#
 # Start the rails server.
 #
 # Uses Snailgun and/or thin if available.
@@ -59,7 +73,7 @@ function rails_server {
     if which -s thin > /dev/null; then
         server=thin
     fi
-    rails_ruby script/server $server $*
+    rails_script server $server $*
 }
 
 #
@@ -71,19 +85,19 @@ function rails_console {
     if rails_snailgun_available; then
         fconsole $*
     else
-        script/console $*
+        rails_script console $*
     fi
 }
 
 alias rrn='snailgun -v --rails development'
 alias rrx='rails_server'
 alias rrc='rails_console'
-alias rrdb='rails_ruby script/dbconsole'
+alias rrdb='rails_script dbconsole'
 alias rrcs='rails_console --sandbox'
-alias rrr='rails_ruby script/runner'
-alias rrg='rails_ruby script/generate'
-alias rrd='rails_ruby script/destroy'
-alias rrp='rails_ruby script/plugin'
+alias rrr='rails_script runner'
+alias rrg='rails_script generate'
+alias rrd='rails_script destroy'
+alias rrp='rails_script plugin'
 alias rrl='tail -f log/`rails_env`.log'
 
 #
