@@ -39,7 +39,10 @@ function ruby-ps1 {
     if in_snailgun_shell; then
         echo -n "[@] "
     fi
-    echo -n "[`rvm-prompt`] "
+    local prompt=`rvm-prompt --no-default`
+    if [ -n "$prompt" ]; then
+        echo -n "[$prompt] "
+    fi
 }
 
 # RVM
