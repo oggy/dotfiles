@@ -9,7 +9,7 @@ alias gemup='gem sources -u'
 alias gemr='rake gem && gemu && gemi'
 
 export USE_ALLISON=''
-function rdoc {
+rdoc() {
     if [ "$USE_ALLISON" ]; then
         allison $@
     else
@@ -17,7 +17,7 @@ function rdoc {
     fi
 }
 
-function cdrg {
+cdrg() {
     if [ $# -eq 0 ]; then
         cd `gem env gemdir`/gems
     elif gem info --exactly-one $@ > /dev/null; then
@@ -30,12 +30,12 @@ function cdrg {
     fi
 }
 
-function in_snailgun_shell {
+in_snailgun_shell() {
     local ppid=`ps -p $$ -o ppid=`
     ps -o command= -p "$ppid" | grep snailgun > /dev/null
 }
 
-function ruby-ps1 {
+ruby-ps1() {
     if in_snailgun_shell; then
         echo -n "[@] "
     fi

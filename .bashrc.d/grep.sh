@@ -7,7 +7,7 @@
 # Matches that are assumed uninteresting (e.g., files in .svn,
 # .git, and TAGS files) are filtered out.
 #
-function rg {
+rg() {
     local extra_args
     if [ "$#" -eq 1 ]; then
         extra_args="."

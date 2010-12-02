@@ -4,4 +4,4 @@ alias sco='svn co'
 alias sd='svn diff'
 alias sst='svn st'
 alias sin='svn info'
-function slog() { svn log $* | less; }
+slog() { svn log $* | less; }

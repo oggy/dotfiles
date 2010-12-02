@@ -16,7 +16,7 @@ alias lld="$LS -ld"
 alias lr="$LS -ltr"
 
 # ls and less in one
-function l {
+l() {
     if [ $# -eq 0 ]; then
         $PAGER
     elif [ $# -eq 1 -a -f "$1" ]; then

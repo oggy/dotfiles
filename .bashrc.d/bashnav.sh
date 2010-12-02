@@ -19,7 +19,7 @@ declare -a BASHNAV_FUTURE
 #
 # Like `cd', but update bashnav's history and future.
 #
-function bashnav_go {
+bashnav_go() {
     # TODO: support -L and -P options to cd.
     local dir=$1
     if [ -z "$dir" ]; then
@@ -38,7 +38,7 @@ function bashnav_go {
 #
 # If an argument `n' is given, go back n directories instead.
 #
-function bashnav_back {
+bashnav_back() {
     for i in `_bashnav_times $1`; do
         local history_length=${#BASHNAV_HISTORY[*]}
         if [ $history_length -eq 0 ]; then
@@ -57,7 +57,7 @@ function bashnav_back {
 #
 # If an argument `n' is given, go forward n directories instead.
 #
-function bashnav_forward {
+bashnav_forward() {
     for i in `_bashnav_times $1`; do
         local future_length=${#BASHNAV_FUTURE[*]}
         if [ $future_length -eq 0 ]; then
@@ -76,7 +76,7 @@ function bashnav_forward {
 #
 # If an argument `n' is given, go up n directories instead.
 #
-function bashnav_up {
+bashnav_up() {
     local dir
     for i in `_bashnav_times $1`; do
         if [ -z "$dir" ]; then
@@ -91,7 +91,7 @@ function bashnav_up {
 #
 # Print the current state of bashnav.
 #
-function bashnav_show {
+bashnav_show() {
     for entry in ${BASHNAV_HISTORY[*]}; do
         echo "  $entry"
     done
@@ -102,23 +102,23 @@ function bashnav_show {
     done
 }
 
-function _bashnav_history_push {
+_bashnav_history_push() {
     BASHNAV_HISTORY[${#BASHNAV_HISTORY[*]}]=$1
 }
 
-function _bashnav_future_push {
+_bashnav_future_push() {
     BASHNAV_FUTURE[${#BASHNAV_FUTURE[*]}]=$1
 }
 
-function _bashnav_history_pop {
+_bashnav_history_pop() {
     unset BASHNAV_HISTORY[${#BASHNAV_HISTORY[*]}-1]
 }
 
-function _bashnav_future_pop {
+_bashnav_future_pop() {
     unset BASHNAV_FUTURE[${#BASHNAV_FUTURE[*]}-1]
 }
 
-function _bashnav_times {
+_bashnav_times() {
     local n=$1
     local descending=$2
 
@@ -144,7 +144,7 @@ function _bashnav_times {
     fi
 }
 
-function _bashnav_autoshow {
+_bashnav_autoshow() {
     if [ "$BASHNAV_AUTOSHOW" = 1 ]; then
         bashnav_show
     fi

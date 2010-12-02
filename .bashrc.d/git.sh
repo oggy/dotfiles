@@ -31,7 +31,7 @@ alias ggxa='git commit --amend'
 alias ggzl='git stash list'
 alias ggzp='git --no-pager stash pop'
 
-function ggz {
+ggz() {
     if [ $# -eq 0 ]; then
         echo "Message please!" >&2
         return 1
@@ -39,7 +39,7 @@ function ggz {
     git stash save $*
 }
 
-function ggzki {
+ggzki() {
     if [ $# -eq 0 ]; then
         echo "Message please!" >&2
         return 1
@@ -47,7 +47,7 @@ function ggzki {
     git stash save --keep-index $*
 }
 
-function ggzsh {
+ggzsh() {
     if [ $# -ne 1 ]; then
         echo "USAGE: ggzsh STASH-NUMBER" >&2
         return 1
@@ -58,7 +58,7 @@ function ggzsh {
 #
 # Output the contents of $2 in git branch $1
 #
-function ggcat {
+ggcat() {
     git cat-file blob "$1:$2" | $PAGER
 }
 
@@ -72,7 +72,7 @@ function ggcat {
 #
 # If it doesn't exist, print '?' as a prompt to install it.
 #
-function git-ps1 {
+git-ps1() {
     if type __git_ps1 > /dev/null 2>&1; then
         __git_ps1 ' [%s] '
     else

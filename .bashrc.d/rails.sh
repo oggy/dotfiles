@@ -6,7 +6,7 @@ RAILS_SRC=~/src/rails
 #
 # Print the $RAILS_ENV or 'development' if it's undefined.
 #
-function rails_env {
+rails_env() {
     if [ -n "$RAILS_ENV" ]; then
         echo -n $RAILS_ENV
     else
@@ -18,7 +18,7 @@ function rails_env {
 # Successful iff the snailgun socket is available for the current
 # environment.
 #
-function rails_snailgun_available {
+rails_snailgun_available() {
     local snailgun_socket=tmp/sockets/snailgun/`rails_env`
     test -S "$snailgun_socket"
 }
@@ -28,7 +28,7 @@ function rails_snailgun_available {
 #
 # Uses snailgun if available.
 #
-function rails_rake {
+rails_rake() {
     if rails_snailgun_available; then
         frake $*
     else
@@ -41,7 +41,7 @@ function rails_rake {
 #
 # Uses snailgun if available.
 #
-function rails_ruby {
+rails_ruby() {
     if rails_snailgun_available; then
         fruby $*
     else
@@ -55,7 +55,7 @@ function rails_ruby {
 # For example: server, console, generate, etc. This abstracts across
 # the Rails 2 and 3 commands.
 #
-function rails_script {
+rails_script() {
     if [ -x script/rails ]; then
         rails_ruby script/rails "$@"
     else
@@ -68,7 +68,7 @@ function rails_script {
 #
 # Uses Snailgun and/or thin if available.
 #
-function rails_server {
+rails_server() {
     local server
     if which -s thin > /dev/null; then
         server=thin
@@ -81,7 +81,7 @@ function rails_server {
 #
 # Uses Snailgun if available.
 #
-function rails_console {
+rails_console() {
     if rails_snailgun_available; then
         fconsole $*
     else
@@ -105,7 +105,7 @@ alias rrl='tail -f log/`rails_env`.log'
 #
 # Generates it first if necessary.
 #
-function rrdoc {
+rrdoc() {
     local START_PAGE='doc/api/index.html'
     if [ ! -f "$START_PAGE" ]; then
         rails_rake doc:rails
@@ -120,7 +120,7 @@ alias rrtp='rails_rake test:plugins'
 #
 # Freeze edge Rails into this application.
 #
-function freeze-edge-rails {
+freeze-edge-rails() {
     local RAILS=~/src/rails
     local DST=$1
     if [ -z "$DST" ]; then
@@ -136,7 +136,7 @@ function freeze-edge-rails {
 #
 # Use edge Rails to generate a new Rails application.
 #
-function edgerails {
+edgerails() {
     local DST=$1
     if [ $# -ne 1 -o -z "$DST" ]; then
         echo "USAGE: edgerails DIR" >&2
@@ -157,7 +157,7 @@ function edgerails {
 # If an integer argument is given, migrate to that version.  Otherwise
 # run the db:migrate task with the given arguments.
 #
-function rrm {
+rrm() {
     ruby -e 'Integer(ARGV[0])' -- "$1" 2> /dev/null
     local is_integer=$?
 
@@ -181,7 +181,7 @@ function rrm {
 #
 # Defaults to the latest migration.
 #
-function rrmr {
+rrmr() {
     local version=$1
     shift
     if [ -n "$version" ]; then
@@ -196,7 +196,7 @@ function rrmr {
 #
 # Defaults to the latest migration.
 #
-function rrmd {
+rrmd() {
     local version=$1
     shift
     if [ -n "$version" ]; then
@@ -211,7 +211,7 @@ function rrmd {
 #
 # Defaults to the latest migration.
 #
-function rrmu {
+rrmu() {
     local version=$1
     shift
     if [ -n "$version" ]; then
@@ -221,7 +221,7 @@ function rrmu {
     fi
 }
 
-function _rails_migration_version {
+_rails_migration_version() {
     if [ -n "$1" ]; then
         echo $1
     else
