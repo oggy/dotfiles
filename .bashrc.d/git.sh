@@ -47,6 +47,14 @@ function ggzki {
     git stash save --keep-index $*
 }
 
+function ggzsh {
+    if [ $# -ne 1 ]; then
+        echo "USAGE: ggzsh STASH-NUMBER" >&2
+        return 1
+    fi
+    git show stash@{$1}
+}
+
 #
 # Output the contents of $2 in git branch $1
 #
