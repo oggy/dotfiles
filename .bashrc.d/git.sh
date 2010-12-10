@@ -55,6 +55,14 @@ ggzsh() {
     git show stash@{$1}
 }
 
+ggzd() {
+    if [ $# -ne 1 ]; then
+        echo "USAGE: ggzd STASH-NUMBER" >&2
+        return 1
+    fi
+    git stash drop stash@{$1}
+}
+
 #
 # Output the contents of $2 in git branch $1
 #
