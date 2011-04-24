@@ -31,7 +31,6 @@ alias gguncommit='git reset --soft HEAD^'
 alias ggx='git commit'
 alias ggxa='git commit --amend'
 alias ggzl='git stash list'
-alias ggzp='git --no-pager stash pop'
 
 ggz() {
     if [ $# -eq 0 ]; then
@@ -50,11 +49,27 @@ ggzki() {
 }
 
 ggzsh() {
-    if [ $# -ne 1 ]; then
+    if [ $# -eq 0 ]; then
+        git show stash@{0}
+    elif [ $# -eq 1 ]; then
+        git show stash@{$1}
+    else
         echo "USAGE: ggzsh STASH-NUMBER" >&2
         return 1
     fi
-    git show stash@{$1}
+}
+
+ggzp() {
+    local ref
+    if [ $# -eq 0 ]; then
+        ref=
+    elif [ $# -eq 1 ]; then
+        ref=stash@{$1}
+    else
+        echo "USAGE: ggzp [STASH-NUMBER]" >&2
+        return 1
+    fi
+    git --no-pager stash pop $ref
 }
 
 ggzd() {
