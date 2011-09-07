@@ -8,7 +8,6 @@ export PATH=~/bin:`paths -d ~/local/*/bin``paths -d /usr/local/*/bin`/opt/local/
 export GREP_OPTIONS='-I --exclude .svn --color'
 export PAGER='less -R'
 export RI='-f ansi'
-export RUBYOPT='rubygems'
 
 # Dump core.
 ulimit -c unlimited
