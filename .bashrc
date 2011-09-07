@@ -24,7 +24,7 @@ if [ "$PS1" ]; then
       local num=$2
       if [ -z "$dir" ]; then dir=. ; fi
       if [ -z "$num" ]; then num=25; fi
-      du -ks $dir/* | sort -nr | head -n "$num"
+      du -ks "$dir"/* | sort -nr | head -n "$num"
     }
 
     function usd { cd "/usr/share/doc/$1"; }

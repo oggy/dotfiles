@@ -24,15 +24,25 @@ rails_snailgun_available() {
 }
 
 #
+# Run the given command through bundler if there's a Gemfile present.
+#
+rails_bundler() {
+    if [ -r Gemfile ]; then
+        RUNNER='bundle exec'
+    fi
+    $RUNNER "$@"
+}
+
+#
 # Run the appropriate rake command with the given arguments.
 #
 # Uses snailgun if available.
 #
 rails_rake() {
     if rails_snailgun_available; then
-        frake $*
+        rails_bundler frake $*
     else
-        rake $*
+        rails_bundler rake $*
     fi
 }
 
@@ -43,9 +53,9 @@ rails_rake() {
 #
 rails_ruby() {
     if rails_snailgun_available; then
-        fruby $*
+        rails_bundler fruby $*
     else
-        ruby $*
+        rails_bundler ruby $*
     fi
 }
 
@@ -89,7 +99,7 @@ rails_console() {
     fi
 }
 
-alias rrn='snailgun -v --rails development'
+alias rrn='snailgun -I . -v --rails development'
 alias rrx='rails_server'
 alias rrc='rails_console'
 alias rrdb='rails_script dbconsole'
@@ -182,13 +192,8 @@ rrm() {
 # Defaults to the latest migration.
 #
 rrmr() {
-    local version=$1
-    shift
-    if [ -n "$version" ]; then
-        rails_rake db:migrate:redo VERSION=`_rails_migration_version $version` $*
-    else
-        rails_rake db:migrate:redo $*
-    fi
+    local version=$1; shift
+    rails_rake db:migrate:redo VERSION=`_rails_migration_version $version` $*
 }
 
 #
@@ -197,13 +202,8 @@ rrmr() {
 # Defaults to the latest migration.
 #
 rrmd() {
-    local version=$1
-    shift
-    if [ -n "$version" ]; then
-        rails_rake db:migrate:down VERSION=`_rails_migration_version $version` $*
-    else
-        rails_rake db:migrate:down $*
-    fi
+    local version=$1; shift
+    rails_rake db:migrate:down VERSION=`_rails_migration_version $version` $*
 }
 
 #
@@ -212,13 +212,8 @@ rrmd() {
 # Defaults to the latest migration.
 #
 rrmu() {
-    local version=$1
-    shift
-    if [ -n "$version" ]; then
-        rails_rake db:migrate:up VERSION=`_rails_migration_version $version` $*
-    else
-        rails_rake db:migrate:up $*
-    fi
+    local version=$1; shift
+    rails_rake db:migrate:up VERSION=`_rails_migration_version $version` $*
 }
 
 _rails_migration_version() {
