@@ -24,15 +24,25 @@ rails_snailgun_available() {
 }
 
 #
+# Run the given command through bundler if there's a Gemfile present.
+#
+rails_bundler() {
+    if [ -r Gemfile ]; then
+        RUNNER='bundle exec'
+    fi
+    $RUNNER "$@"
+}
+
+#
 # Run the appropriate rake command with the given arguments.
 #
 # Uses snailgun if available.
 #
 rails_rake() {
     if rails_snailgun_available; then
-        frake $*
+        rails_bundler frake $*
     else
-        rake $*
+        rails_bundler rake $*
     fi
 }
 
@@ -43,9 +53,9 @@ rails_rake() {
 #
 rails_ruby() {
     if rails_snailgun_available; then
-        fruby $*
+        rails_bundler fruby $*
     else
-        ruby $*
+        rails_bundler ruby $*
     fi
 }
 
