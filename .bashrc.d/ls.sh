@@ -3,13 +3,8 @@ if which dircolors 2>&1 > /dev/null; then
     eval `dircolors`
 fi
 
-if [ `uname` = 'Darwin' ]; then
-    # Mac: gls is part of the coreutils port
-    export LS='gls --color=auto '
-else
-    export LS='ls --color=auto '
-fi
-alias ls="$LS"
+export LS=ls
+export CLICOLOR=1
 
 alias ll="$LS -l"
 alias lld="$LS -ld"
