@@ -99,7 +99,7 @@ rails_console() {
     fi
 }
 
-alias rrn='snailgun -v --rails development'
+alias rrn='snailgun -I . -v --rails development'
 alias rrx='rails_server'
 alias rrc='rails_console'
 alias rrdb='rails_script dbconsole'
