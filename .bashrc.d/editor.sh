@@ -14,7 +14,5 @@ if [ "$PS1" ]; then
     alias E="sudo $EDITOR"
 fi
 
-alias aquamacs='~/Applications/Aquamacs\ Emacs.app/Contents/MacOS/Aquamacs\ Emacs'
-
 alias bashrc="$EDITOR ~/.bashrc"
 alias bashrcs="$EDITOR ~/.bashrc-site"
