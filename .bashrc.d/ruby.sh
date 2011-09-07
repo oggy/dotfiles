@@ -46,6 +46,6 @@ ruby-ps1() {
 }
 
 # RVM
-if [ -s /Users/g/.rvm/scripts/rvm ]; then
-  . /Users/g/.rvm/scripts/rvm
+if [ -s ~/.rvm/scripts/rvm ]; then
+  . ~/.rvm/scripts/rvm
 fi
