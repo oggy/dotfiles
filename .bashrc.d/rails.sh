@@ -192,7 +192,8 @@ rrm() {
 # Defaults to the latest migration.
 #
 rrmr() {
-    rails_rake db:migrate:redo VERSION=`_rails_migration_version $1` $*
+    local version=$1; shift
+    rails_rake db:migrate:redo VERSION=`_rails_migration_version $version` $*
 }
 
 #
@@ -201,7 +202,8 @@ rrmr() {
 # Defaults to the latest migration.
 #
 rrmd() {
-    rails_rake db:migrate:down VERSION=`_rails_migration_version $1` $*
+    local version=$1; shift
+    rails_rake db:migrate:down VERSION=`_rails_migration_version $version` $*
 }
 
 #
@@ -210,7 +212,8 @@ rrmd() {
 # Defaults to the latest migration.
 #
 rrmu() {
-    rails_rake db:migrate:up VERSION=`_rails_migration_version $1` $*
+    local version=$1; shift
+    rails_rake db:migrate:up VERSION=`_rails_migration_version $version` $*
 }
 
 _rails_migration_version() {
