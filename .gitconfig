@@ -1,0 +1,18 @@
+[core]
+        excludesfile = ~/.gitconfig.d/excludes
+
+        # Give group access to everything.  Allows building on VMs.
+        sharedRepository = group
+
+[user]
+        name = George Ogata
+        email = george.ogata@gmail.com
+[color]
+        diff = auto
+        status = auto
+        branch = auto
+[push]
+        default = tracking
+
+[merge]
+        log = true
