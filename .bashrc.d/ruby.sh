@@ -9,6 +9,7 @@ alias gemls='gem list -rd --no-update-sources | less'
 alias gemup='gem sources -u'
 alias gemr='rake gem && gemu && gemi'
 alias brake='bundle exec rake'
+alias cdrl="cd \`ruby -rrbconfig -e 'puts (defined?(RbConfig) ? RbConfig : Config)::CONFIG[\"rubylibdir\"]'\`"
 
 export USE_ALLISON=''
 rdoc() {
