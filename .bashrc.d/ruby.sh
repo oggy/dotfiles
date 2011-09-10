@@ -11,15 +11,6 @@ alias gemr='rake gem && gemu && gemi'
 alias brake='bundle exec rake'
 alias cdrl="cd \`ruby -rrbconfig -e 'puts (defined?(RbConfig) ? RbConfig : Config)::CONFIG[\"rubylibdir\"]'\`"
 
-export USE_ALLISON=''
-rdoc() {
-    if [ "$USE_ALLISON" ]; then
-        allison $@
-    else
-        rdoc $@
-    fi
-}
-
 cdrg() {
     if [ $# -eq 0 ]; then
         cd `gem env gemdir`/gems
