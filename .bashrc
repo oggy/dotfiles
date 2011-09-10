@@ -7,7 +7,6 @@ function paths() {
 export PATH=~/bin:`paths -d ~/local/*/bin``paths -d /usr/local/*/bin`/opt/local/bin:$PATH
 export GREP_OPTIONS='-I --exclude .svn --color'
 export PAGER='less -R'
-export RI='-f ansi'
 
 # Dump core.
 ulimit -c unlimited
