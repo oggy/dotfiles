@@ -92,7 +92,9 @@ rails_server() {
 # Uses Snailgun if available.
 #
 rails_console() {
-    if rails_snailgun_available; then
+    if [ -f Gemfile ] && bundle show pry > /dev/null; then
+        bundle exec pry -I. -rconfig/environment
+    elif rails_snailgun_available; then
         fconsole $*
     else
         rails_script console $*
