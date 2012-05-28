@@ -1,2 +1,13 @@
 /[^.]*
 *~
+/.bash_history
+/.bashrc-site
+/.emacs.d
+/.irb-history
+/.lesshst
+/.mysql_history
+/.pry_history
+/.rdebug_hist
+/.rediscli_history
+/.rubinius_last_error
+/.viminfo
