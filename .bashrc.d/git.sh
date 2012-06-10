@@ -1,39 +1,39 @@
-alias gga='git add'
-alias ggai='git add --interactive'
-alias ggap='git add --patch'
-alias ggau='git add -u'
-alias ggaN='git add -N'
-alias ggb='git branch'
-alias ggba='git branch -a'
-alias ggbd='git branch -d'
-alias ggbD='git branch -D'
-alias ggc='git checkout'
-alias ggd='git diff -b'
-alias ggdc='git diff -b --cached'
-alias ggf='git fetch'
-alias ggh='git help'
-alias ggl='git log'
-alias gglp='git log -p'
-alias ggm='git merge'
-alias ggmv='git mv'
-alias ggo='git clone'
-alias ggp='git pull'
-alias ggpr='git pull --rebase'
-alias ggP='git push'
-alias ggrb='git rebase'
-alias ggrbc='git rebase --continue'
-alias ggrbi='git rebase --interactive'
-alias ggrh='git reset HEAD'
-alias ggrm='git rm'
-alias ggs='git --no-pager status'
-alias ggsh='git show'
-alias ggt='git remote'
-alias gguncommit='git reset --soft HEAD^'
-alias ggx='git commit'
-alias ggxa='git commit --amend'
-alias ggzl='git stash list'
+alias ga='git add'
+alias gai='git add --interactive'
+alias gap='git add --patch'
+alias gau='git add -u'
+alias gaN='git add -N'
+alias gb='git branch'
+alias gba='git branch -a'
+alias gbd='git branch -d'
+alias gbD='git branch -D'
+alias gc='git checkout'
+alias gd='git diff -b'
+alias gdc='git diff -b --cached'
+alias gf='git fetch'
+alias gh='git help'
+alias gl='git log'
+alias glp='git log -p'
+alias gm='git merge'
+alias gmv='git mv'
+alias go='git clone'
+alias gp='git pull'
+alias gpr='git pull --rebase'
+alias gP='git push'
+alias grb='git rebase'
+alias grbc='git rebase --continue'
+alias grbi='git rebase --interactive'
+alias grh='git reset HEAD'
+alias grm='git rm'
+alias g='git --no-pager status'
+alias gsh='git show'
+alias gt='git remote'
+alias guncommit='git reset --soft HEAD^'
+alias gx='git commit'
+alias gxa='git commit --amend'
+alias gzl='git stash list'
 
-ggz() {
+gz() {
     if [ $# -eq 0 ]; then
         echo "Message please!" >&2
         return 1
@@ -41,7 +41,7 @@ ggz() {
     git stash save $*
 }
 
-ggzki() {
+gzki() {
     if [ $# -eq 0 ]; then
         echo "Message please!" >&2
         return 1
@@ -49,7 +49,7 @@ ggzki() {
     git stash save --keep-index $*
 }
 
-ggzsh() {
+gzsh() {
     if [ $# -eq 0 ]; then
         git show stash@{0}
     elif [ $# -eq 1 ]; then
@@ -60,7 +60,7 @@ ggzsh() {
     fi
 }
 
-ggzp() {
+gzp() {
     local ref
     if [ $# -eq 0 ]; then
         ref=
@@ -73,7 +73,7 @@ ggzp() {
     git --no-pager stash pop $ref
 }
 
-ggzd() {
+gzd() {
     if [ $# -ne 1 ]; then
         echo "USAGE: ggzd STASH-NUMBER" >&2
         return 1
@@ -84,7 +84,7 @@ ggzd() {
 #
 # Output the contents of $2 in git branch $1
 #
-ggcat() {
+gcat() {
     git cat-file blob "$1:$2" | $PAGER
 }
 
