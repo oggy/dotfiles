@@ -11,6 +11,7 @@ alias gemup='gem sources -u'
 alias gemr='rake gem && gemu && gemi'
 alias brake='bundle exec rake'
 alias cdrl="cd \`ruby -rrbconfig -e 'puts (defined?(RbConfig) ? RbConfig : Config)::CONFIG[\"rubylibdir\"]'\`"
+alias be='bundle exec'
 
 cdrg() {
     if [ $# -eq 0 ]; then
