@@ -1,4 +1,6 @@
-if which xemacs > /dev/null; then
+if [ -e /Applications/Aquamacs.app/Contents/MacOS/Aquamacs ]; then
+    export EDITOR="/Applications/Aquamacs.app/Contents/MacOS/Aquamacs -nw"
+elif which xemacs > /dev/null; then
     export EDITOR="xemacs -nw"
 elif which emacs > /dev/null; then
     export EDITOR="emacs -nw"
@@ -10,8 +12,8 @@ fi
 
 if [ "$PS1" ]; then
     # Interactive
-    alias e="$EDITOR"
-    alias E="sudo $EDITOR"
+    alias ee="$EDITOR"
+    alias EE="sudo $EDITOR"
 fi
 
 alias bashrc="$EDITOR ~/.bashrc"
