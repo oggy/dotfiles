@@ -111,6 +111,7 @@ alias rrg='rails_script generate'
 alias rrd='rails_script destroy'
 alias rrp='rails_script plugin'
 alias rrl='tail -f log/`rails_env`.log'
+alias rry='pry -r ./config/environment'
 
 #
 # Open the Rails API documentation.
