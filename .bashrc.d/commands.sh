@@ -1,5 +1,7 @@
 alias gv='gv --spartan'
 alias apg8='apg -m 8 -x 8 -M NCL -n 20'
+alias mp='ps -ef | grep'
+alias MP='sudo mp'
 
 # sdu [DIR] [NUM]
 #
