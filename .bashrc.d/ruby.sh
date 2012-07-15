@@ -25,6 +25,15 @@ cdrg() {
     fi
 }
 
+cdbg() {
+    if [ $# -eq 1 ]; then
+        cd `bundle list $1`
+    else
+        echo "USAGE: $FUNCNAME GEM" >&2
+        return 1
+    fi
+}
+
 in_snailgun_shell() {
     local ppid=`ps -p $$ -o ppid=`
     ps -o command= -p "$ppid" | grep snailgun > /dev/null
