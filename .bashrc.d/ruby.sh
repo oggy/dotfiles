@@ -44,9 +44,17 @@ ruby-ps1() {
     if in_snailgun_shell; then
         echo -n "[@] "
     fi
-    local prompt=`rvm-prompt --no-default`
+    local prompt=`rvm-prompt`
     if [ -n "$prompt" ]; then
         echo -n "[$prompt] "
+    fi
+}
+
+ruby-rvm-prompt() {
+    if [ -z "$RUBY_RVM_PROMPT" ]; then
+        export RUBY_RVM_PROMPT=1
+        PS1_RUBY_COLOR='\[[1;31m\]'
+        export PS1="$PS1_RUBY_COLOR\`ruby-ps1\`$PS1"
     fi
 }
 

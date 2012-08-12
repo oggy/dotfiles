@@ -30,10 +30,9 @@ if [ "$PS1" ]; then
     PS1_COLOR='\[[1;36m\]'
     DEFAULT_COLOR='\[[0m\]'
     PS1_GIT_COLOR='\[[1;32m\]'
-    PS1_RUBY_COLOR='\[[1;31m\]'
     if [ "$MRXVT_TABTITLE" ]; then
         export PS1="\[]61;\W$PS1_COLOR\]\u@\h:\w\$ $DEFAULT_COLOR"
     else
-        export PS1="$PS1_RUBY_COLOR\`ruby-ps1\`$PS1_COLOR\u@\h:\w$PS1_GIT_COLOR\`git-ps1\`$PS1_COLOR\$ $DEFAULT_COLOR"
+        export PS1="$PS1_COLOR\u@\h:\w$PS1_GIT_COLOR\`git-ps1\`$PS1_COLOR\$ $DEFAULT_COLOR"
     fi
 fi
