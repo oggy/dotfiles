@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 function paths() {
     ls -1 $* 2> /dev/null | tr '\n' ':' | sed -e "s/\([][{}()'\"|~\\\`!@#$%^&*]\)/\\\1/g"
