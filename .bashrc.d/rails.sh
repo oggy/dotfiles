@@ -112,6 +112,7 @@ alias rrd='rails_script destroy'
 alias rrp='rails_script plugin'
 alias rrl='tail -f log/`rails_env`.log'
 alias rry='pry -r ./config/environment'
+alias rrdbt='rails_rake db:test:prepare'
 
 #
 # Open the Rails API documentation.
