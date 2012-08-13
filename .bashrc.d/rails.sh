@@ -42,7 +42,7 @@ rails_rake() {
     if rails_snailgun_available; then
         rails_bundler frake $*
     else
-        rails_bundler rake $*
+        rails_bundler rake --trace $*
     fi
 }
 
