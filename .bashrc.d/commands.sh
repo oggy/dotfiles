@@ -18,3 +18,12 @@ function sdu {
     if [ -z "$num" ]; then num=25; fi
     du -ks "$dir"/* | sort -nr | head -n "$num"
 }
+
+function make-ssl-cert {
+    local domain="$1"; shift
+    if [ -z "$domain" ]; then
+        echo "USAGE: $FUNCNAME DOMAIN" >&2
+        return 1
+    fi
+    openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout "$domain".key -out "$domain".crt
+}
