@@ -90,6 +90,13 @@ gcat() {
 }
 
 #
+# Show who has the trophy.
+#
+git-glory() {
+    git log --format='%an' --no-merges | sort | uniq -c | sort -nr
+}
+
+#
 # Print the git branch indicator to use in $PS1.
 #
 # Uses __git_ps1 if it exists.
