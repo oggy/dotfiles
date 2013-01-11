@@ -1,0 +1,9 @@
+import atexit
+import os
+import readline
+
+history_path = os.path.expanduser('~/.python_history')
+if os.path.exists(history_path):
+  readline.read_history_file(history_path)
+readline.parse_and_bind('tab: complete')
+atexit.register(readline.write_history_file, history_path)
