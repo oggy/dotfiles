@@ -7,7 +7,11 @@ alias gb='git branch'
 alias gba='git branch -a'
 alias gbd='git branch -d'
 alias gbD='git branch -D'
+alias gbm='git branch -m'
+alias gbM='git branch -M'
+alias gbsu='git branch --set-upstream `git rev-parse --abbrev-ref HEAD` origin/`git rev-parse --abbrev-ref HEAD`'
 alias gc='git checkout'
+alias gcb='git checkout -b'
 alias gd='git diff -b'
 alias gdc='git diff -b --cached'
 alias gf='git fetch'
@@ -22,6 +26,7 @@ alias gp='git pull'
 alias gpr='git pull --rebase'
 alias gP='git push'
 alias grb='git rebase'
+alias grba='git rebase --abort'
 alias grbc='git rebase --continue'
 alias grbi='git rebase --interactive'
 alias grh='git reset HEAD'
@@ -33,6 +38,15 @@ alias guncommit='git reset --soft HEAD^'
 alias gx='git commit'
 alias gxa='git commit --amend'
 alias gzl='git stash list'
+
+gcbt() {
+  if [ $# -eq 0 ]; then
+      echo "USAGE: gcbt BRANCH GIT-OPTIONS ..." >&2
+      return 1
+  fi
+  local branch=$1; shift
+  git checkout -b "$branch" --track "origin/$branch" $*
+}
 
 gz() {
     if [ $# -eq 0 ]; then
