@@ -1,5 +1,6 @@
 [core]
         excludesfile = ~/.gitconfig.d/excludes
+        editor = vim
 
         # Give group access to everything.  Allows building on VMs.
         sharedRepository = group
