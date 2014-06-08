@@ -15,101 +15,44 @@ rails_env() {
 }
 
 #
-# Successful iff the snailgun socket is available for the current
-# environment.
-#
-rails_snailgun_available() {
-    local snailgun_socket=tmp/sockets/snailgun/`rails_env`
-    test -S "$snailgun_socket"
-}
-
-#
-# Run the given command through bundler if there's a Gemfile present.
-#
-rails_bundler() {
-    if [ -r Gemfile ]; then
-        RUNNER='bundle exec'
-    fi
-    $RUNNER "$@"
-}
-
-#
 # Run the appropriate rake command with the given arguments.
 #
-# Uses snailgun if available.
-#
 rails_rake() {
-    if rails_snailgun_available; then
-        rails_bundler frake $*
-    else
-        rails_bundler rake --trace $*
-    fi
-}
-
-#
-# Run the appropriate ruby command with the given arguments.
-#
-# Uses snailgun if available.
-#
-rails_ruby() {
-    if rails_snailgun_available; then
-        rails_bundler fruby $*
-    else
-        rails_bundler ruby $*
-    fi
-}
-
-#
-# Run a rails script.
-#
-# For example: server, console, generate, etc. This abstracts across
-# the Rails 2 and 3 commands.
-#
-rails_script() {
-    if [ -x script/rails ]; then
-        rails_ruby script/rails "$@"
-    else
-        rails_ruby script/"$@"
-    fi
+    bundle exec rake --trace $*
 }
 
 #
 # Start the rails server.
 #
-# Uses Snailgun and/or thin if available.
-#
 rails_server() {
-    local server
-    if which -s thin > /dev/null; then
-        server=thin
+    if grep -q 'gem.*thin' Gemfile; then
+        echo 'Using thin.' >&2
+        rails server thin $*
+    else
+        echo 'Using webrick.' >&2
+        rails server $*
     fi
-    rails_script server $server $*
 }
 
 #
 # Run the rails console.
 #
-# Uses Snailgun if available.
-#
 rails_console() {
     if [ -f Gemfile ] && bundle show pry > /dev/null; then
         bundle exec pry -I. -rconfig/environment
-    elif rails_snailgun_available; then
-        fconsole $*
     else
-        rails_script console $*
+        rails console $*
     fi
 }
 
-alias rrn='snailgun -I . -v --rails development'
 alias rrx='rails_server'
 alias rrc='rails_console'
-alias rrdb='rails_script dbconsole'
+alias rrdb='rails dbconsole'
 alias rrcs='rails_console --sandbox'
-alias rrr='rails_script runner'
-alias rrg='rails_script generate'
-alias rrd='rails_script destroy'
-alias rrp='rails_script plugin'
+alias rrr='rails runner'
+alias rrg='rails generate'
+alias rrd='rails destroy'
+alias rrp='rails plugin'
 alias rrl='tail -f log/`rails_env`.log'
 alias rry='pry -r ./config/environment'
 alias rrdbt='rails_rake db:test:prepare'
@@ -126,10 +69,6 @@ rrdoc() {
     fi
     open "$START_PAGE"
 }
-
-alias rrtf='rails_rake test:functionals'
-alias rrti='rails_rake test:integration'
-alias rrtp='rails_rake test:plugins'
 
 #
 # Freeze edge Rails into this application.
@@ -178,15 +117,7 @@ rrm() {
     if [ "$is_integer" = "0" ]; then
         rails_rake db:migrate "VERSION=$1"
     else
-        if [ -d `pwd`/db/migrate ]; then
-            echo "db/migrate found -- performing standard migration"
-            rails_rake db:migrate $@
-        elif [ -d `pwd`/vendor/plugins/auto_migrations ]; then
-            echo "auto_migrations plugin found -- performing automigration"
-            rails_rake db:auto:migrate $@
-        else
-            echo "no migrations found" >&2
-        fi
+        rails_rake db:migrate $@
     fi
 }
 
