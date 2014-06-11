@@ -25,7 +25,7 @@ rails_rake() {
 # Start the rails server.
 #
 rails_server() {
-    if grep -q 'gem.*thin' Gemfile; then
+    if grep -q 'thin\b' Gemfile.lock; then
         echo 'Using thin.' >&2
         rails server thin $*
     else
