@@ -3,4 +3,5 @@
 /.rbx
 /.respec_failures
 /.rvmrc
+/gdev
 /virtualenv
