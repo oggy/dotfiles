@@ -22,7 +22,9 @@ virtualenv-auto-activate() {
             deactivate
         else
             VIRTUALENV_ROOT="$root"
-            source "$root/env/bin/activate"
+            if [ -e "$root/virtualenv/bin/activate" ]; then
+                source "$root/virtualenv/bin/activate"
+            fi
         fi
     fi
 }
@@ -30,7 +32,7 @@ virtualenv-auto-activate() {
 virtualenv-find-root() {
     local dir=`pwd`
     while [ -n "$dir" ]; do
-        if [ -e "$dir/env/bin/activate" ]; then
+        if [ -e "$dir/virtualenv/bin/activate" ]; then
             echo -n "$dir"
             return 0
         fi
