@@ -1,3 +1,5 @@
+alias Git='git --no-pager'
+alias Gsh='git --no-pager show'
 alias ga='git add'
 alias gai='git add --interactive'
 alias gap='git add --patch'
