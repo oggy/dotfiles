@@ -3,6 +3,14 @@
 #
 RAILS_SRC=~/src/rails
 
+rails_framework() {
+    if [ -e config/apps.rb ]; then
+        echo -n padrino
+    else
+        echo -n rails
+    fi
+}
+
 #
 # Print the $RAILS_ENV or 'development' if it's undefined.
 #
@@ -25,12 +33,22 @@ rails_rake() {
 # Start the rails server.
 #
 rails_server() {
+    local framework=$(rails_framework)
+    local options
+    local handler
+
     if grep -q 'thin\b' Gemfile.lock; then
-        echo 'Using thin.' >&2
-        rails server thin $*
+        echo "Using thin." >&2
+        handler=thin
+    fi
+
+    if [ "$framework" = padrino ]; then
+        if [ -n "$handler" ]; then
+            options=--server="$handler"
+        fi
+        $(rails_framework) start $options $*
     else
-        echo 'Using webrick.' >&2
-        rails server $*
+        $(rails_framework) server $server $*
     fi
 }
 
@@ -38,71 +56,24 @@ rails_server() {
 # Run the rails console.
 #
 rails_console() {
-    if [ -f Gemfile ] && bundle show pry > /dev/null; then
-        bundle exec pry -I. -rconfig/environment
-    else
-        rails console $*
-    fi
+    # if [ -f Gemfile ] && bundle show pry > /dev/null; then
+    #     bundle exec pry -I. -rconfig/environment
+    # else
+        $(rails_framework) console $*
+    # fi
 }
 
 alias rrx='rails_server'
 alias rrc='rails_console'
-alias rrdb='rails dbconsole'
+alias rrdb='$(rails_framework) dbconsole'
 alias rrcs='rails_console --sandbox'
-alias rrr='rails runner'
-alias rrg='rails generate'
-alias rrd='rails destroy'
-alias rrp='rails plugin'
+alias rrr='$(rails_framework) runner'
+alias rrg='$(rails_framework) generate'
+alias rrd='$(rails_framework) destroy'
+alias rrp='$(rails_framework) plugin'
 alias rrl='tail -f log/`rails_env`.log'
 alias rry='pry -r ./config/environment'
 alias rrdbt='rails_rake db:test:prepare'
-
-#
-# Open the Rails API documentation.
-#
-# Generates it first if necessary.
-#
-rrdoc() {
-    local START_PAGE='doc/api/index.html'
-    if [ ! -f "$START_PAGE" ]; then
-        rails_rake doc:rails
-    fi
-    open "$START_PAGE"
-}
-
-#
-# Freeze edge Rails into this application.
-#
-freeze-edge-rails() {
-    local RAILS=~/src/rails
-    local DST=$1
-    if [ -z "$DST" ]; then
-        DST=`pwd`
-    elif [ ${DST:0:1} != '/' ]; then
-        DST=`pwd`/$DST
-    fi
-    cd $RAILS
-    git checkout-index -a --prefix="$DST"/vendor/rails/
-    cd -
-}
-
-#
-# Use edge Rails to generate a new Rails application.
-#
-edgerails() {
-    local DST=$1
-    if [ $# -ne 1 -o -z "$DST" ]; then
-        echo "USAGE: edgerails DIR" >&2
-        return 1
-    elif [ ${DST:0:1} != '/' ]; then
-        DST=`pwd`/$DST
-    fi
-
-    ruby $RAILS_SRC/railties/bin/rails $1
-    cd $RAILS_SRC
-    git checkout-index -a --prefix="$DST"/vendor/rails/
-    cd -
-}
 
 #
 # Run migrations.
