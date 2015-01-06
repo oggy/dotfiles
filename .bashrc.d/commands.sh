@@ -28,3 +28,12 @@ function make-ssl-cert {
     fi
     openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout "$domain".key -out "$domain".crt
 }
+
+ssh-forget() {
+    if [ $# -ne 1 ]; then
+        echo "USAGE: $0 LINE-NUMBER" &2
+    fi
+    local target=~/.ssh/known_hosts
+    sed -n "${1}!p" "$target" > "$target.tmp"
+    mv "$target.tmp" "$target"
+}
