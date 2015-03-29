@@ -1,4 +1,5 @@
 .DS_Store
+*.py[co]
 /.noseids
 /.rbx
 /.respec_failures
