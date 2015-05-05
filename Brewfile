@@ -36,6 +36,7 @@ install redis
 install rust
 install sbt
 install scala
+install snzip
 install sphinx --mysql  # NOTE: need 2.0.9 + libstemmer sha hack + https://github.com/mistydemeo/homebrew/commit/294368a97817001721d23b3e36b251f5f09e05a4
 install sqlite
 install the_silver_searcher
