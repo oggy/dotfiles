@@ -7,6 +7,11 @@ alias format-json='python -mjson.tool'
 alias mp='ps -ef | grep -i'
 alias MP='sudo ps -ef | grep -i'
 
+alias v='vagrant'
+alias vs='vagrant ssh'
+alias vup='vagrant up'
+alias vh='vagrant halt'
+
 # sdu [DIR] [NUM]
 #
 # List the NUM biggest files in DIR.
