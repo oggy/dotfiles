@@ -4,7 +4,9 @@
 RAILS_SRC=~/src/rails
 
 rails_framework() {
-    if [ -e config/apps.rb ]; then
+    if [ -e bin/rails ]; then
+        echo bin/rails
+    elif [ -e config/apps.rb ]; then
         echo -n padrino
     else
         echo -n rails
@@ -26,7 +28,11 @@ rails_env() {
 # Run the appropriate rake command with the given arguments.
 #
 rails_rake() {
-    bundle exec rake --trace $*
+    if [ -e bin/rake ]; then
+        bin/rake
+    else
+        bundle exec rake --trace $*
+    fi
 }
 
 #
