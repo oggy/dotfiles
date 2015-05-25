@@ -1,5 +1,6 @@
 brew 'ant'
 brew 'awscli'
+brew 'bash'
 brew 'bash-completion'
 brew 'Caskroom/cask/xquartz'  # for R
 brew 'colordiff'
