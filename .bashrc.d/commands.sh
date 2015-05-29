@@ -1,11 +1,9 @@
 alias gv='gv --spartan'
 alias apg8='apg -m 8 -x 8 -M NCL -n 20'
 alias iex='rlwrap --always-readline iex'
-alias mp='ps -ef | grep'
-alias MP='sudo mp'
 alias format-json='python -mjson.tool'
-alias mp='ps -ef | grep -i'
-alias MP='sudo ps -ef | grep -i'
+alias psg='ps -ef | grep -i'
+alias PSG='sudo ps -ef | grep -i'
 
 alias v='vagrant'
 alias vs='vagrant ssh'
