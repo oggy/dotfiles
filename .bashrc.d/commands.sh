@@ -7,8 +7,9 @@ alias PSG='sudo ps -ef | grep -i'
 
 alias v='vagrant'
 alias vs='vagrant ssh'
-alias vup='vagrant up'
+alias vu='vagrant up'
 alias vh='vagrant halt'
+alias vD='vagrant destroy'
 
 # sdu [DIR] [NUM]
 #
