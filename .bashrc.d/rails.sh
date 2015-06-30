@@ -29,9 +29,9 @@ rails_env() {
 #
 rails_rake() {
     if [ -e bin/rake ]; then
-        bin/rake
+        bin/rake --trace "$@"
     else
-        bundle exec rake --trace $*
+        bundle exec rake --trace "$@"
     fi
 }
 
