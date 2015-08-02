@@ -69,3 +69,7 @@ ruby-rvm-prompt() {
 if [ -s ~/.rvm/scripts/rvm ]; then
   . ~/.rvm/scripts/rvm
 fi
+
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+which -s rbenv && eval "$(rbenv init -)"
