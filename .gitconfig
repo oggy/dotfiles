@@ -17,3 +17,5 @@
 
 [merge]
         log = true
+[credential]
+	helper = osxkeychain
