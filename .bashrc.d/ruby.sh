@@ -9,9 +9,16 @@ export SNAILGUN_SHELL_OPTS="-l"
 alias gemls='gem list -rd --no-update-sources | less'
 alias gemup='gem sources -u'
 alias gemr='rake gem && gemu && gemi'
-alias brake='bundle exec rake'
 alias cdrl="cd \`ruby -rrbconfig -e 'puts (defined?(RbConfig) ? RbConfig : Config)::CONFIG[\"rubylibdir\"]'\`"
 alias be='bundle exec'
+
+brake() {
+    if [ -e bin/rake ]; then
+        bin/rake "$@"
+    else
+        bundle exec rake "$@"
+    fi
+}
 
 cdrg() {
     if [ $# -eq 0 ]; then
