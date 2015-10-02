@@ -5,12 +5,6 @@ alias format-json='python -mjson.tool'
 alias psg='ps -ef | grep -i'
 alias PSG='sudo ps -ef | grep -i'
 
-alias v='vagrant'
-alias vs='vagrant ssh'
-alias vu='vagrant up'
-alias vh='vagrant halt'
-alias vD='vagrant destroy'
-
 # sdu [DIR] [NUM]
 #
 # List the NUM biggest files in DIR.
