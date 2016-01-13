@@ -15,7 +15,7 @@ l() {
     if [ $# -eq 0 ]; then
         $PAGER
     elif [ $# -eq 1 -a -f "$1" ]; then
-        $PAGER "$1"
+        $PAGER -N "$1"
     else
         $LS -l --color=always $*
     fi
