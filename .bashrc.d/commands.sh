@@ -5,6 +5,8 @@ alias format-json='python -mjson.tool'
 alias psg='ps -ef | grep -i'
 alias PSG='sudo ps -ef | grep -i'
 
+alias r='R --no-save'
+
 # sdu [DIR] [NUM]
 #
 # List the NUM biggest files in DIR.
