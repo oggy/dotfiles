@@ -4,7 +4,10 @@ function paths() {
     ls -1 $* 2> /dev/null | tr '\n' ':' | sed -e "s/\([][{}()'\"|~\\\`!@#$%^&*]\)/\\\1/g"
 }
 
-export PATH=~/bin:`paths -d ~/local/*/bin``paths -d /usr/local/*/bin`/opt/local/bin:$PATH
+# Set up PATH.
+[ "$(uname)" = Darwin ] &&
+  export PATH=~/brew/bin:~/brew/sbin:~/brew/share/npm/bin:$PATH
+export PATH=~/bin:~/opt/bin:/usr/local/texlive/2015/bin/x86_64-darwin:$PATH
 export GREP_OPTIONS='-I --exclude .svn --color'
 export PAGER='less -R'
 
