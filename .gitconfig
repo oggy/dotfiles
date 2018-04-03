@@ -1,21 +1,36 @@
 [core]
-        excludesfile = ~/.gitconfig.d/excludes
-        editor = vim
+  excludesfile = ~/.gitconfig.d/excludes
+  editor = vim
 
-        # Give group access to everything.  Allows building on VMs.
-        sharedRepository = group
+  # Give group access to everything.  Allows building on VMs.
+  sharedRepository = group
 
 [user]
-        name = George Ogata
-        email = george.ogata@gmail.com
+  name = George Ogata
+  email = george.ogata@gmail.com
+
 [color]
-        diff = auto
-        status = auto
-        branch = auto
+  diff = auto
+  status = auto
+  branch = auto
+
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = red bold reverse
+  newNormal = green bold
+  newHighlight = green bold reverse
+
 [push]
-        default = current
+  default = current
 
 [merge]
-        log = true
+  log = true
+
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
+
+[interactive]
+  diffFilter = diff-highlight
+
+[diff]
+  compactionHeuristic = true
