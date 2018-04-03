@@ -1,6 +1,7 @@
 syntax on
 set expandtab
 set number
+set ruler
 
 filetype plugin indent on
 autocmd FileType javascript,coffee      setlocal et sw=2 sts=2 isk+=$
