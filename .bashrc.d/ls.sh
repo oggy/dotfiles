@@ -6,9 +6,9 @@ fi
 export LS=ls
 export CLICOLOR=1
 
-alias ll="$LS -l"
-alias lld="$LS -ld"
-alias lr="$LS -ltr"
+alias ll="$LS -alF"
+alias lld="$LS -ald"
+alias lr="$LS -alFtr"
 
 # ls and less in one
 l() {
@@ -17,6 +17,6 @@ l() {
     elif [ $# -eq 1 -a -f "$1" ]; then
         $PAGER -N "$1"
     else
-        $LS -l --color=always $*
+        $LS -l $*
     fi
 }
