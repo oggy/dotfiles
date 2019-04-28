@@ -26,7 +26,6 @@ alias glag="git log --author=$(git config user.email) --no-merges"
 alias glp='git log -p'
 alias gmf='git merge --ff-only'
 alias gmv='git mv'
-alias go='git clone'
 alias gp='git pull'
 alias gpr='git pull --rebase'
 alias gP='git push'
