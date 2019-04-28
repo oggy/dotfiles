@@ -1,8 +1,32 @@
 #!/bin/bash
 
-function paths() {
-    ls -1 $* 2> /dev/null | tr '\n' ':' | sed -e "s/\([][{}()'\"|~\\\`!@#$%^&*]\)/\\\1/g"
+# On MacOS, Terminal.app defines this and sets it as the default for
+# PROMPT_COMMAND. Subshells inherit PROMPT_COMMAND, but not the function, so
+# define it as a noop if needed for these subshells.
+type update_terminal_cwd > /dev/null 2>&1 || alias update_terminal_cwd=:
+
+# add_path VALUE ENTRY
+#
+# Add ENTRY to a colon-separated list of paths VALUE (like a PATH variable) if
+# it's not in there yet.
+add_path() {
+    value="$1"
+    entry="$2"
+
+    if [[ ":$value:" = *":$entry:"* ]]; then
+        echo "$value"
+    else
+        echo "$entry:$value"
+    fi
 }
+
+# On MacOS, Terminal.app reads standard paths from /etc/paths, but not iTerm.
+# Fix that.
+if [ -e /etc/paths ]; then
+  for path in $(tail -r /etc/paths); do
+    PATH=$(add_path "$PATH" "$path")
+  done
+fi
 
 # Set up PATH.
 [ "$(uname)" = Darwin ] &&
