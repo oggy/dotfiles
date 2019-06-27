@@ -4,6 +4,7 @@ alias dclf='docker-compose logs -f'
 alias dcps='docker-compose ps'
 alias dil='docker image list'
 alias dps='docker ps'
+alias dcst='docker-compose stop'
 alias dup='docker-compose up -d'
 alias dur='docker-compose up'
 alias ddn='docker-compose down'
@@ -15,6 +16,17 @@ dosh() {
   fi
   local container=$1
   shift
+  docker exec "$@" -it "$container" /bin/bash
+}
+
+dcsh() {
+  if [ $# -eq 0 ]; then
+    echo "USAGE: $0 SERVICE [OPTIONS]" >&2
+    return 1
+  fi
+  local service=$1
+  shift
+  local container=$(docker-compose ps -q "$service")
   docker exec "$@" -it "$container" /bin/bash
 }
 
