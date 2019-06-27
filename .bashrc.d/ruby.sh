@@ -23,8 +23,8 @@ brake() {
 cdrg() {
     if [ $# -eq 0 ]; then
         cd `gem env gemdir`/gems
-    elif gem info --exactly-one $@ > /dev/null; then
-        local dir=`gem info -f '%path' $@`
+    elif gem fuzzy --exactly-one $@ > /dev/null; then
+        local dir=`gem fuzzy -f '%path' $@`
         if [ -d $dir/lib ]; then
             cd $dir/lib
         else
