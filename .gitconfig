@@ -30,7 +30,7 @@
   helper = osxkeychain
 
 [interactive]
-  diffFilter = diff-highlight
+  diffFilter = delta --color-only --features=interactive
 
 [diff]
   compactionHeuristic = true
