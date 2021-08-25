@@ -23,8 +23,8 @@ add_path() {
 # On MacOS, Terminal.app reads standard paths from /etc/paths, but not iTerm.
 # Fix that.
 if [ -e /etc/paths ]; then
-  for path in $(tail -r /etc/paths); do
-    PATH=$(add_path "$PATH" "$path")
+  for dir in $(tail -r /etc/paths); do
+    PATH="$(add_path $PATH $dir)"
   done
 fi
 
