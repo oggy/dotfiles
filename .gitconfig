@@ -5,10 +5,6 @@
   # Give group access to everything.  Allows building on VMs.
   sharedRepository = group
 
-[user]
-  name = George Ogata
-  email = george.ogata@gmail.com
-
 [color]
   diff = auto
   status = auto
@@ -20,17 +16,36 @@
   newNormal = green bold
   newHighlight = green bold reverse
 
-[push]
-  default = current
-
-[merge]
-  log = true
-
 [credential]
   helper = osxkeychain
+
+[delta]
+  features = decorations
+
+[delta "interactive"]
+  keep-plus-minus-markers = false
+
+[delta "decorations"]
+  commit-decoration-style = blue ol
+  commit-style = raw
+  file-style = omit
+  hunk-header-decoration-style = blue box
+  hunk-header-file-style = red
+  hunk-header-line-number-style = "#067a00"
+  hunk-header-style = file line-number syntax
+
+[diff]
+  compactionHeuristic = true
 
 [interactive]
   diffFilter = delta --color-only --features=interactive
 
-[diff]
-  compactionHeuristic = true
+[merge]
+  log = true
+
+[push]
+  default = current
+
+[user]
+  name = George Ogata
+  email = george.ogata@gmail.com
