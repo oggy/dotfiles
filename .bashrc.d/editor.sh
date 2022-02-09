@@ -12,3 +12,4 @@ fi
 
 alias bashrc="$EDITOR ~/.bashrc"
 alias bashrcs="$EDITOR ~/.bashrc-site"
+alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
