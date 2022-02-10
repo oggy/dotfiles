@@ -29,8 +29,10 @@ if [ -e /etc/paths ]; then
 fi
 
 # Set up PATH.
-[ "$(uname)" = Darwin ] &&
-  export PATH=~/brew/bin:~/brew/sbin:~/brew/share/npm/bin:$PATH
+test -f /opt/homebrew/bin/brew &&
+  PATH=$(add_path "$PATH" /opt/homebrew/bin)
+test -f "$HOME"/brew/bin/brew &&
+  PATH=$(add_path "$PATH" "$HOME"/brew/bin)
 export PATH=~/bin:~/opt/bin:/usr/local/texlive/2015/bin/x86_64-darwin:$PATH
 export GREP_OPTIONS='-I --exclude .svn --color'
 export PAGER='less -R'
