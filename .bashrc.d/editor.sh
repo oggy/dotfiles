@@ -12,4 +12,5 @@ fi
 
 alias bashrc="$EDITOR ~/.bashrc"
 alias bashrcs="$EDITOR ~/.bashrc-site"
+alias e=~/.emacs.d/bin/open
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
