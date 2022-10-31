@@ -14,12 +14,10 @@ alias gbM='git branch -M'
 alias gbsu='git branch --set-upstream `git rev-parse --abbrev-ref HEAD` origin/`git rev-parse --abbrev-ref HEAD`'
 alias gc='git checkout'
 alias gcb='git checkout -b'
-alias gcm='git checkout master'
 alias gcp='git cherry-pick'
 alias gcpx='git cherry-pick -x'
 alias gd='git diff -b'
 alias gdc='git diff -b --cached'
-alias gdm='git diff "$(git merge-base HEAD master)"'
 alias gf='git fetch'
 alias gh='git help'
 alias gl='git log'
@@ -34,7 +32,6 @@ alias grb='git rebase'
 alias grba='git rebase --abort'
 alias grbc='git rebase --continue'
 alias grbi='git rebase --interactive'
-alias grbm='git rebase master'
 alias grh='git reset HEAD'
 alias grm='git rm'
 alias g='git --no-pager status'
@@ -44,6 +41,33 @@ alias guncommit='git reset --soft HEAD^'
 alias gx='git commit'
 alias gxa='git commit --amend'
 alias gzl='git stash list'
+
+git-main() {
+  local top="$(git rev-parse --show-toplevel)"
+  if [ -f "$top"/.git/refs/heads/main ]; then
+    echo main
+  else
+    echo master
+  fi
+}
+
+gcm() {
+  git checkout "$(git-main)"
+}
+
+gdm() {
+  local main="$(git-main)"
+  local base="$(git merge-base HEAD "$main")"
+  git diff "$base"
+}
+
+glm() {
+  git log "$@" "$(git-main)"..HEAD
+}
+
+grbm() {
+  git rebase "$(git-main)"
+}
 
 gcbt() {
   if [ $# -eq 0 ]; then
