@@ -4,7 +4,6 @@ export RUBY_GC_MALLOC_LIMIT=59000000
 export RUBY_HEAP_FREE_MIN=100000
 
 export LOOKSEE_EDITOR="atom %f:%l"
-export SNAILGUN_SHELL_OPTS="-l"
 
 alias gemls='gem list -rd --no-update-sources | less'
 alias gemup='gem sources -u'
@@ -35,40 +34,18 @@ cdrg() {
 
 cdbg() {
     if [ $# -eq 1 ]; then
-        cd `bundle list $1`
+        cd `bundle show $1`
     else
         echo "USAGE: $FUNCNAME GEM" >&2
         return 1
     fi
 }
 
-in_snailgun_shell() {
-    local ppid=`ps -p $$ -o ppid=`
-    ps -o command= -p "$ppid" | grep snailgun > /dev/null
+default-ruby-version() {
+    cd
+    rbenv version-name
+    cd - > /dev/null
 }
-
-ruby-ps1() {
-    if in_snailgun_shell; then
-        echo -n "[@] "
-    fi
-    local prompt=`rvm-prompt`
-    if [ -n "$prompt" ]; then
-        echo -n "[$prompt] "
-    fi
-}
-
-ruby-rvm-prompt() {
-    if [ -z "$RUBY_RVM_PROMPT" ]; then
-        export RUBY_RVM_PROMPT=1
-        PS1_RUBY_COLOR='\[[1;31m\]'
-        export PS1="$PS1_RUBY_COLOR\`ruby-ps1\`$PS1"
-    fi
-}
-
-# RVM
-if [ -s ~/.rvm/scripts/rvm ]; then
-  . ~/.rvm/scripts/rvm
-fi
 
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
