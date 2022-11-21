@@ -69,6 +69,10 @@ rails_console() {
     # fi
 }
 
+rails_test_reset() {
+  RAILS_ENV=test $(rails_framework) db:drop db:create db:schema:load
+}
+
 alias rrx='rails_server'
 alias rrc='rails_console'
 alias rrdb='$(rails_framework) dbconsole'
@@ -80,6 +84,7 @@ alias rrp='$(rails_framework) plugin'
 alias rrl='tail -f log/`rails_env`.log'
 alias rry='pry -r ./config/environment'
 alias rrdbt='rails_rake db:test:prepare'
+alias rrtr='rails_test_reset'
 
 #
 # Run migrations.
