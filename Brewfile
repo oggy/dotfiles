@@ -27,6 +27,9 @@ brew 'the_silver_searcher'
 brew 'tree'
 brew 'watch'
 
+tap 'd12frosted/emacs-plus'
+brew 'emacs-plus@29'
+
 # Bash completion
 brew 'bundler-completion'
 brew 'gem-completion'
