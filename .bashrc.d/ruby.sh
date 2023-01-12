@@ -34,7 +34,12 @@ cdrg() {
 
 cdbg() {
     if [ $# -eq 1 ]; then
-        cd `bundle show $1`
+        local dir=`bundle show $1`
+        if [ "$?" -eq 0 ]; then
+          cd `bundle show $1`
+        else
+          echo "$dir" >&2
+        fi
     else
         echo "USAGE: $FUNCNAME GEM" >&2
         return 1
