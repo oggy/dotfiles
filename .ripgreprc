@@ -1,0 +1,6 @@
+--no-heading
+--with-filename
+--colors=path:fg:yellow
+--colors=line:style:bold
+--colors=line:fg:white
+

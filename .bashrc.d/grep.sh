@@ -7,7 +7,7 @@
 # Matches that are assumed uninteresting (e.g., files in .svn,
 # .git, and TAGS files) are filtered out.
 #
-rg() {
+grg() {
     local extra_args
     if [ "$#" -eq 1 ]; then
         extra_args="."
@@ -21,3 +21,5 @@ rg() {
 
 # I keep mistyping this...
 alias grpe=grep
+
+export RIPGREP_CONFIG_PATH=~/.ripgreprc
