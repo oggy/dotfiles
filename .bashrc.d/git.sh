@@ -43,8 +43,7 @@ alias gxa='git commit --amend'
 alias gzl='git stash list'
 
 git-main() {
-  local top="$(git rev-parse --show-toplevel)"
-  if [ -f "$top"/.git/refs/heads/main ]; then
+  if git show-ref -q main; then
     echo main
   else
     echo master
