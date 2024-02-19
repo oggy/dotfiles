@@ -49,3 +49,5 @@
 [user]
   name = George Ogata
   email = george.ogata@gmail.com
+[init]
+	defaultBranch = main
