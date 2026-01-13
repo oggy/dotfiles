@@ -16,6 +16,9 @@
   newNormal = green bold
   newHighlight = green bold reverse
 
+[commit]
+  gpgsign = true
+
 [credential]
   helper = osxkeychain
 
@@ -37,6 +40,12 @@
 [diff]
   compactionHeuristic = true
 
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
 [interactive]
   diffFilter = delta --color-only --features=interactive
 
@@ -49,5 +58,10 @@
 [user]
   name = George Ogata
   email = george.ogata@gmail.com
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICLDaiQhWgtP2QVkoXR8JsHFzD7chLNYMIQpzczVYVtk
+
 [init]
-	defaultBranch = main
+  defaultBranch = main
+
+[gpg "ssh"]
+  allowedSignersFile = /Users/gogata/.gitconfig.d/allowed_signers
