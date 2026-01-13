@@ -1,1 +1,2 @@
 \set PROMPT1 '%[%033[0;32m%]%M %n@%/%R psql>%[%033[0m%]% '
+\pset pager 0
