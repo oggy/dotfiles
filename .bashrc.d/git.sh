@@ -19,7 +19,6 @@ alias gcpx='git cherry-pick -x'
 alias gd='git diff -b'
 alias gdc='git diff -b --cached'
 alias gf='git fetch'
-alias gh='git help'
 alias gl='git log'
 alias glag="git log --author=$(git config user.email) --no-merges"
 alias glp='git log -p'
