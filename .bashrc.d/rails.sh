@@ -13,11 +13,14 @@ rails_test_reset() {
   RAILS_ENV=test $(rails_framework) db:drop db:create db:schema:load
 }
 
+alias brails='bin/rails'
 alias rrx='bin/rails server'
 alias rrc='bin/rails console'
 alias rrdb='bin/rails dbconsole'
+alias rrdbr='bin/rails db:drop db:create db:schema:load db:seed'
 alias rrdbt='RAILS_ENV=test bin/rails dbconsole'
 alias rrcs='bin/rails console --sandbox'
+alias rrsmu='bin/rails stimulus:manifest:update'
 alias rrr='bin/rails runner'
 alias rrg='bin/rails generate'
 alias rrl='tail -f log/`rails_env`.log'
@@ -72,7 +75,11 @@ rrmu() {
 
 _rails_migration_version() {
     if [ -n "$1" ]; then
-        echo $1
+        if [[ "$1" =~ [0-9]+ ]]; then
+            echo "${BASH_REMATCH[0]}"
+        else
+            echo $1
+        fi
     else
         ls -1 db/migrate | grep '\.rb$' | cut -d_ -f1 | sort -n | tail -1
     fi
