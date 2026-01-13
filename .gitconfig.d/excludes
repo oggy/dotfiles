@@ -1,6 +1,7 @@
 .DS_Store
 .Rdata
 .Rhistory
+.claude/settings.local.json
 .ensime
 .ensime_cache
 .idea
