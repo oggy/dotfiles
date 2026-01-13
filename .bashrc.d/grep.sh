@@ -16,6 +16,8 @@ grg() {
         grep -v '^[^:]*\.svn/[^:]*:' |                           \
         grep -v '^[^:]*\.git/[^:]*:' |                           \
         grep -v '^\([^:]*/\)\?TAGS:' |                           \
+        # Remove double slash if a dir has a trailing slash
+        sed -e 's|\([^:]*\)//|\1/|'  |                           \
         sed -e 's/\([^:]*\):\([^:]*\):/[33m\1 [0m[1m\2[0m:/'
 }
 
