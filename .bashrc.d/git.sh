@@ -57,7 +57,7 @@ gcm() {
 gdm() {
   local main="$(git-main)"
   local base="$(git merge-base HEAD "$main")"
-  git diff "$base"
+  git diff "$@" "$base"
 }
 
 glm() {
