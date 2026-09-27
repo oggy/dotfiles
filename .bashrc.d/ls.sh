@@ -16,6 +16,8 @@ l() {
         $PAGER
     elif [ $# -eq 1 -a -f "$1" ]; then
         $PAGER -N "$1"
+    elif [ $# -eq 1 ] && [[ $1 =~ ^(.+):([0-9]+)$ ]] && [ -f "${BASH_REMATCH[1]}" ]; then
+        $PAGER -N -j.5 +"${BASH_REMATCH[2]}" "${BASH_REMATCH[1]}"
     else
         $LS -l $*
     fi
